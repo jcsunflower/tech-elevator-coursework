@@ -8,40 +8,46 @@ public class Lecture {
 		1. Create a variable to hold an int and call it numberOfExercises.
 			Then set it to 26.
 		*/
+		int numberOfExercises = 26;
 
-		//System.out.println(numberOfExercises);
+		System.out.println(numberOfExercises);
 
 		/*
 		2. Create a variable to hold a double and call it half.
 			Set it to 0.5.
 		*/
 
-		//System.out.println(half);
+		double half = 0.5;
+		System.out.println(half);
 
 		/*
 		3. Create a variable to hold a String and call it name.
 			Set it to "TechElevator".
 		*/
 
-		//System.out.println(name);
+		String name = "TechElevator";
+		System.out.println(name);
 
 		/*
 		4. Create a variable called seasonsOfFirefly and set it to 1.
 		*/
 
-		//System.out.println(seasonsOfFirefly);
+		int seasonsOfFirefly = 1;
+		System.out.println(seasonsOfFirefly);
 
 		/*
 		5. Create a variable called myFavoriteLanguage and set it to "Java".
 		*/
 
-		//System.out.println(myFavoriteLanguage);
+		String myFavoriteLanguage = "Java";
+		System.out.println(myFavoriteLanguage);
 
 		/*
 		6. Create a variable called pi and set it to 3.1416.
 		*/
 
-		//System.out.println(pi);
+		double pi = 3.1416;
+		System.out.println(pi);
 
 		/*
 		7. Create and set a variable that holds your name.
@@ -68,10 +74,16 @@ public class Lecture {
 		12. Create a String that holds your full name.
 		*/
 
+		String myFullName = "Jay Chen";
+
 		/*
 		13. Create a String that holds the word "Hello, " concatenated onto your
 		name from above.
 		*/
+		String greeting = "Hello, " + myFullName;
+		System.out.println(greeting);
+		int hexadecimalNum = 0xFF;
+		System.out.println(hexadecimalNum);
 
 		/*
 		14. Add a " Esquire" onto the end of your full name and save it back to
@@ -126,6 +138,13 @@ public class Lecture {
 		/*
 		26. Now set doneWithExercise to true.
 		*/
+
+
+		int valueOne = 17;
+		int valueTwo = 64;
+
+		int sum = valueOne + valueTwo;
+		System.out.println(sum);
 		
 	}
 
