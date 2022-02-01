@@ -3,7 +3,7 @@ package com.techelevator.farm;
 public class OldMacdonald {
 	public static void main(String[] args) {
 
-		FarmAnimal[] farmAnimals = new FarmAnimal[] { new Cow(), new Chicken() };
+		FarmAnimal[] farmAnimals = new FarmAnimal[] { new Cow(), new Chicken(), new Pig() };
 
 		for (FarmAnimal animal : farmAnimals) {
 			String name = animal.getName();
