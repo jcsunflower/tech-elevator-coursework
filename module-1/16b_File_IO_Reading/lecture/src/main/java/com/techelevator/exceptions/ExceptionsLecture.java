@@ -5,6 +5,9 @@ import java.util.Scanner;
 public class ExceptionsLecture {
 
 	public static void main(String[] args) {
+
+//		String nullStr = null;
+//		nullStr.length(); <---- Unhandled exception in main; goes to default handler
 		Scanner scan = new Scanner(System.in);
 		
 		/* By default, when an Exception is thrown, it will "bubble up" through the call stack until
@@ -35,6 +38,10 @@ public class ExceptionsLecture {
 			System.out.println("See, I told you nothing would go wrong!");
 		} catch(ArrayIndexOutOfBoundsException e) {  
 			System.out.println("Call the Darwin Awards...");
+		} catch (NullPointerException e) {
+			System.out.println("Caught an NPE");
+		} catch (Exception e) { // Typically only used as a final safety net
+			System.out.println("Caught something");
 		}
 		
 		System.out.println();
@@ -132,11 +139,19 @@ public class ExceptionsLecture {
 	}
 
 	private static void doSomethingDangerous() {
-		int[] numbers = new int[5];
-		for(int i = 0; i < 10; i++) {
-			numbers[i] = i;  // this line will throw an Exception once i reaches 5
+		try {
+			int[] numbers = new int[5];
+			for(int i = 0; i < 10; i++) {
+				numbers[i] = i;  // this line will throw an Exception once i reaches 5
+			}
+			System.out.println("Look Ma, no Exceptions!");  // This line will not execute because an Exception will be thrown inside the for loop
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Oops. " + e.getMessage());
 		}
-		System.out.println("Look Ma, no Exceptions!");  // This line will not execute because an Exception will be thrown inside the for loop
+
+		String nullStr = null;
+		nullStr.length();
+
 	}
 
 }
