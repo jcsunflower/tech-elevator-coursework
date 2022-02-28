@@ -1,43 +1,43 @@
 Bug 1
 -----
 Test that demonstrates problem:
-
+    getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee
 Expected output:
-
+    getTimesheetsByEmployeeId(1L) should have an ArrayList size of 2 (2 timesheets associated with employee ID: 1L)
 Actual output:
-
+    getTimesheetsByEmployeeId(1L) has a size of 1
 How did you fix this bug?
-
+    Changed: if (results.next()) to while(results.next()) on line 40 of JdbcTimesheetDao.java
 
 Bug 2
 -----
 Test that demonstrates problem:
-
+    getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project
 Expected output:
-
+    getTimesheetsByProjectId(1L) should have an ArrayList size of 3 (3 timesheets associated with project ID: 1L)
 Actual output:
-
+    getTimesheetsByProjectId(1L) has a size of 2
 How did you fix this bug?
-
+    Changed: String sql on line 52 from employee_ID to project_ID
 
 Bug 3
 -----
 Test that demonstrates problem:
-
+    updated_timesheet_has_expected_values_when_retrieved
 Expected output:
-
+    updatedTimesheet should match retrievedTimesheet
 Actual output:
-
+    updatedTimesheet did not match retrievedTimesheet (billable returned true despite it being updated to false)
 How did you fix this bug?
-
+    Changed: String sql and jdbc.update() to include billable as a variable to be updated
 
 Bug 4
 -----
 Test that demonstrates problem:
-
+    public void getBillableHours_returns_correct_total
 Expected output:
-
+    Billable hours should return 0.0 for employee_id = 2 AND project_id = 2
 Actual output:
-
+    Billable hours returned 2.0 hours despite billable = false
 How did you fix this bug?
-
+    Changed: String sql on line 93 in JdbcTimesheetDao to include billable = true in the WHERE statement

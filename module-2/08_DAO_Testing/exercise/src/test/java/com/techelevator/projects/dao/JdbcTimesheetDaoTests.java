@@ -5,7 +5,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcTimesheetDaoTests extends BaseDaoTests {
@@ -29,47 +31,92 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
 
     @Test
     public void getTimesheet_returns_correct_timesheet_for_id() {
-        Assert.fail();
+        Timesheet expectedTimesheet = TIMESHEET_1;
+        Timesheet actualTimesheet = sut.getTimesheet(1L);
+        assertTimesheetsMatch(expectedTimesheet, actualTimesheet);
     }
 
     @Test
     public void getTimesheet_returns_null_when_id_not_found() {
-        Assert.fail();
+        Timesheet retrievedTimesheet = sut.getTimesheet(5L);
+        Assert.assertNull(retrievedTimesheet);
     }
 
     @Test
     public void getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee() {
-        Assert.fail();
+        int expectedSize = 2;
+        List<Timesheet> actualTimesheets = sut.getTimesheetsByEmployeeId(1L);
+
+        Assert.assertEquals(expectedSize, actualTimesheets.size());
     }
 
     @Test
     public void getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project() {
-        Assert.fail();
+        int expectedSize = 3;
+        List<Timesheet> actualTimesheets = sut.getTimesheetsByProjectId(1L);
+
+        Assert.assertEquals(expectedSize, actualTimesheets.size());
     }
 
     @Test
     public void createTimesheet_returns_timesheet_with_id_and_expected_values() {
-        Assert.fail();
+        Timesheet expectedTimesheet = new Timesheet(1L, 1L, 1L, LocalDate.now(), 3.0, false, "Timesheet 5");
+        Timesheet actualTimesheet = sut.createTimesheet(expectedTimesheet);
+
+        expectedTimesheet.setTimesheetId(actualTimesheet.getTimesheetId());
+        expectedTimesheet.setEmployeeId(actualTimesheet.getEmployeeId());
+        expectedTimesheet.setProjectId(actualTimesheet.getProjectId());
+
+        this.assertTimesheetsMatch(expectedTimesheet, actualTimesheet);
     }
 
     @Test
     public void created_timesheet_has_expected_values_when_retrieved() {
-        Assert.fail();
+        Timesheet expectedTimesheet = new Timesheet(1L, 1L, 1L, LocalDate.now(), 3.0, false, "Timesheet 5");
+        Timesheet createdTimesheet = sut.createTimesheet(expectedTimesheet);
+
+        expectedTimesheet.setTimesheetId(createdTimesheet.getTimesheetId());
+        expectedTimesheet.setEmployeeId(createdTimesheet.getEmployeeId());
+        expectedTimesheet.setProjectId(createdTimesheet.getProjectId());
+
+        Timesheet actualTimesheet = sut.getTimesheet(createdTimesheet.getTimesheetId());
+
+        this.assertTimesheetsMatch(expectedTimesheet, actualTimesheet);
     }
 
     @Test
     public void updated_timesheet_has_expected_values_when_retrieved() {
-        Assert.fail();
+        Timesheet updatedTimesheet = sut.getTimesheet(1L);
+        updatedTimesheet.setDateWorked(LocalDate.now());
+        updatedTimesheet.setHoursWorked(1.5);
+        updatedTimesheet.setBillable(false);
+        updatedTimesheet.setDescription("Jay's Timesheet");
+
+        sut.updateTimesheet(updatedTimesheet);
+
+        Timesheet retrievedTimesheet = sut.getTimesheet(1L);
+
+        this.assertTimesheetsMatch(updatedTimesheet, retrievedTimesheet);
     }
 
     @Test
     public void deleted_timesheet_cant_be_retrieved() {
-        Assert.fail();
+        sut.deleteTimesheet(4L);
+        Timesheet retrievedTimesheet = sut.getTimesheet(4L);
+        Assert.assertNull(retrievedTimesheet);
     }
 
     @Test
     public void getBillableHours_returns_correct_total() {
-        Assert.fail();
+        double expectedSum = 2.5;
+        double actualSum = sut.getBillableHours(1L, 1L);
+
+        Assert.assertEquals(expectedSum, actualSum, 0.0);
+
+        double expectedSumForNonBillable = 0.0;
+        double actualSumNonBillable = sut.getBillableHours(2L, 2L);
+
+        Assert.assertEquals(expectedSumForNonBillable, actualSumNonBillable, 0.0);
     }
 
     private void assertTimesheetsMatch(Timesheet expected, Timesheet actual) {
