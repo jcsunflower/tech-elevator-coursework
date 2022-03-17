@@ -50,3 +50,40 @@ header img {
 #student-picture img{
     border-radius: 50%;
 }
+
+main#main-grid {
+    display: grid;
+    grid-area: content;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr;
+    grid-template-areas: 
+        "content content content"
+        "content content content"
+        "content content content"
+        "content content content";
+    row-gap: 20px;
+    column-gap: 50px;
+    align-items: center;
+}
+
+#experience-grid {
+    display: grid;
+    grid-area: content;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr;
+    row-gap: 20px;
+    column-gap: 50px;
+    grid-template-areas:
+    "content content"
+    "content content"
+    "content content";   
+}
+
+h1, div, p {
+    display: grid;
+    grid-area: content;
+}
+
+#student-picture, #student-contact {
+    text-align: center;
+}
