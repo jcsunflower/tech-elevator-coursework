@@ -180,11 +180,15 @@ function findLargest(arr) {
  */
 
 function getSumOfSubArrayValues(arr) {
-    let arraySum = arr.reduce( (reducer, arrPart) => {
-        let subArraySum = arr.reduce( (subReducer, subArrPart) => {
-            return subReducer + arrPart.subArrPart_num;
+    let sum = 0;
+    if (arr) {
+        let arraySum = arr.reduce( (prev, array) => {
+            let subArraySum = array.reduce( (subPrev, value) => {
+                return subPrev + value;
+            }, 0);
+            return prev + subArraySum;
         }, 0);
-        return reducer + arrPart;
-    }, 0);
-    return arraySum.trim();
+        sum = arraySum;
+    }
+    return sum;
 }
