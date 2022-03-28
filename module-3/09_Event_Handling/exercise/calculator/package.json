@@ -11,6 +11,6 @@
   "author": "Tech Elevator",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "3.8.3"
+    "cypress": "^9.5.2"
   }
 }
