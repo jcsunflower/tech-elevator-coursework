@@ -44,14 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let items = document.querySelectorAll('li');
 
   items.forEach((item) => {
-    item.addEventListener('click', (event) => {
+    item.addEventListener('click', () => {
       if (!item.classList.contains('completed')) {
         item.classList.add('completed');
         item.querySelector('i').classList.add('completed');
       }
     });
 
-    item.addEventListener('dblclick', (event) => {
+    item.addEventListener('dblclick', () => {
       if (item.classList.contains('completed')) {
         item.classList.remove('completed');
         item.querySelector('i').classList.remove('completed');
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let markAll = document.getElementById('toggleAll');
 
-  markAll.addEventListener('click', (event) => {
+  markAll.addEventListener('click', () => {
     if (allItemsIncomplete) {
       items.forEach((item) => {
         item.classList.add('completed');

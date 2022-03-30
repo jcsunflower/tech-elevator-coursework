@@ -36,6 +36,34 @@
       </div>
     </div>
 
+  <a href="#" v-on:click.prevent="showForm = true" v-if="!showForm">Show Form</a>
+  <form v-on:submit.prevent="addNewReview" v-if="showForm">
+      <div class="form-element">
+        <label for="reviewer">Name:</label>
+        <input type="text" id="reviewer" v-model.trim.lazy="newReview.reviewer"/>
+      </div>
+      <div class="form-element">
+        <label for="title">Title:</label>
+        <input type="text" id="title" v-model="newReview.title"/>
+      </div>
+      <div class="form-element">
+        <label for="rating">Rating:</label>
+        <select id="rating" v-model.number="newReview.rating">
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
+      </div>
+      <div class="form-element">
+        <label for="review">Review:</label>
+        <textarea id="review" v-model="newReview.review"/>
+      </div>
+      <input type="submit" value="Save"/>
+      <input type="button" value="Cancel" v-on:click="resetForm"/>
+  </form>
+
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
@@ -73,6 +101,7 @@ export default {
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
       newReview: {},
+      showForm: false,
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
@@ -140,6 +169,17 @@ export default {
       return this.reviews.reduce((currentCount, review) => {
         return currentCount + (review.rating === 5);
       }, 0);
+    }
+  },
+  methods: {
+    addNewReview() {
+      this.reviews.unshift(this.newReview);
+      this.newReview = {};
+      this.showForm = false;
+    },
+    resetForm() {
+      this.newReview = {};
+      this.showForm = false;
     }
   }
 };
