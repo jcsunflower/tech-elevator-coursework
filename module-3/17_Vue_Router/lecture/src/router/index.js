@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import ProductsList from '../components/ProductsList'
 
 Vue.use(VueRouter)
 
 const routes = [
-
+  {
+    path: '/',
+  }
 ]
 
 const router = new VueRouter({
