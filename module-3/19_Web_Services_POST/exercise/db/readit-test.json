@@ -83,12 +83,6 @@
   ],
   "messages": [
     {
-      "id": 1,
-      "topicId": 15,
-      "title": "rhoncus mauris enim leo rhoncus",
-      "messageText": "metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean"
-    },
-    {
       "id": 2,
       "topicId": 5,
       "title": "eleifend",
